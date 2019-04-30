@@ -54,11 +54,6 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
             Candy(category:"Other", name:"Jelly Beans"),
             Candy(category:"Other", name:"Liquorice"),
             Candy(category:"Hard", name:"Toffee Apple")]
-        
-        if let splitViewController = splitViewController {
-            let controllers = splitViewController.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +101,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         //Find best context to hold tab view, or just leave commented
-        //newViewController.modalPresentationStyle = .currentContext
+        newViewController.modalPresentationStyle = .pageSheet
         self.present(newViewController, animated: false, completion: nil)
         
     }
