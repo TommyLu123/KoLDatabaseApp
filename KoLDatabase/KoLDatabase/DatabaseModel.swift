@@ -201,7 +201,57 @@ class ItemsModel {
     }
     
     static func generateModifierDatabase() -> [String: Modifiers]{
-        let foo : [String: Modifiers] = [:]
-        return foo
+        var returnDictionary : [String: Modifiers] = [:]
+        NSLog("Generating Items")
+        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        let URL = NSURL.fileURL(withPath: filePath!)
+        
+        do {
+            let string = try String.init(contentsOf: URL, encoding: .utf8)
+            let lines = string.split(separator: "\n")
+            for line in lines{
+                NSLog(String(line))
+                // Ignored "commented" out lines
+                if String(line).first == "#"{
+                    continue
+                }
+                let categories = line.components(separatedBy: "\t")
+                // Ignore unknown item ids
+                if categories.count == 1{
+                    continue
+                }
+                
+                for category in categories{
+                    NSLog(String(category))
+                }
+                // In this case we will be ignoring any type besides item
+                if categories[0] != "Item"{
+                    continue
+                }
+                
+                let modifierList = categories[2].components(separatedBy: ",")
+                var modifierDictionary : [String: String] = [:]
+                var addModifier = 0
+                for modifier in modifierList{
+                    if modifier.contains(":"){
+                        // Modifier has a category
+                        let modifierKeyAndValue = modifier.components(separatedBy: ":")
+                        modifierDictionary[modifierKeyAndValue[0]] = modifierKeyAndValue[1]
+                    }
+                    else{
+                        // Modifier is a strange one without a known category (ex: Free Pull)
+                        modifierDictionary["Additional Modifier \(addModifier)"] = modifier
+                        addModifier += 1
+                    }
+                }
+                // Type name    Modifiers
+                let newModifiers = Modifiers(type: categories[0], name: categories[1], modifiers: modifierDictionary)
+                returnDictionary[newModifiers.name] = newModifiers
+            }
+        } catch  {
+            print(error);
+        }
+        
+        return returnDictionary
     }
 }
