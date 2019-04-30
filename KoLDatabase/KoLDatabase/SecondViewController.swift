@@ -31,12 +31,12 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Candies"
+        searchController.searchBar.placeholder = "Search Items"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
         // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["All", "Chocolate", "Hard", "Other"]
+        searchController.searchBar.scopeButtonTitles = ["All", "Equipment", "Food", "Drink"]
         searchController.searchBar.delegate = self
         
         // Setup the search footer
@@ -101,7 +101,15 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredItems = items.filter({( item : Item) -> Bool in
-            let doesCategoryMatch = (scope == "All") || (item.use == scope)
+            let equipment = ["hat", "weapon", "offhand", "container", "shirt", "pants","accessory"]
+            
+            var doesCategoryMatch = (scope == "All") || (item.use.contains(scope.lowercased()))
+            
+            for equip in equipment{
+                if item.use.contains(equip){
+                    doesCategoryMatch = true
+                }
+            }
             
             if searchBarIsEmpty() {
                 return doesCategoryMatch

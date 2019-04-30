@@ -37,8 +37,8 @@ class SearchFooter: UIView {
     }
     
     func configureView() {
-        let candyGreen = UIColor(red: 67.0/255.0, green: 205.0/255.0, blue: 135.0/255.0, alpha: 1.0)
-        backgroundColor = candyGreen
+        backgroundColor = UIColor.black
+
         alpha = 0.0
         
         // Configure label
