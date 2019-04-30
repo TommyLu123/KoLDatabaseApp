@@ -67,6 +67,7 @@ struct Item {
     // Autosell
     let autosell : Int
 }
+
 // Type name    Modifiers
 struct Modifiers {
     // Type
@@ -92,13 +93,75 @@ class ItemsModel {
     }
     
     static func generateFoodDatabase() -> [String: Food]{
-        let foo : [String: Food] = [:]
-        return foo
+        var returnDictionary : [String: Food] = [:]
+        NSLog("Generating Items")
+        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        let URL = NSURL.fileURL(withPath: filePath!)
+        
+        do {
+            let string = try String.init(contentsOf: URL, encoding: .utf8)
+            let lines = string.split(separator: "\n")
+            for line in lines{
+                NSLog(String(line))
+                // Ignored "commented" out lines
+                if String(line).first == "#"{
+                    continue
+                }
+                let categories = line.components(separatedBy: "\t")
+                // Ignore unknown item ids
+                if categories.count == 1{
+                    continue
+                }
+                
+                for category in categories{
+                    NSLog(String(category))
+                }
+                
+                // Food    Fullness    Level Req    quality    Adv    Musc    Myst    Moxie
+                let newFood = Food(name: categories[0], fullness: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: Int(categories[4])!, musc: Int(categories[5])!, myst: Int(categories[6])!, mox: Int(categories[7])!)
+                returnDictionary[newFood.name] = newFood
+            }
+        } catch  {
+            print(error);
+        }
+        
+        return returnDictionary
     }
     
     static func generateDrinkDatabase() -> [String: Drink]{
-        let foo : [String: Drink] = [:]
-        return foo
+        var returnDictionary : [String: Drink] = [:]
+        NSLog("Generating Items")
+        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        let URL = NSURL.fileURL(withPath: filePath!)
+        
+        do {
+            let string = try String.init(contentsOf: URL, encoding: .utf8)
+            let lines = string.split(separator: "\n")
+            for line in lines{
+                NSLog(String(line))
+                // Ignored "commented" out lines
+                if String(line).first == "#"{
+                    continue
+                }
+                let categories = line.components(separatedBy: "\t")
+                // Ignore unknown item ids
+                if categories.count == 1{
+                    continue
+                }
+                
+                for category in categories{
+                    NSLog(String(category))
+                }
+                
+                // Drink    Inebriety    Level Req    quality    Adv    Musc    Myst    Moxie
+                let newDrink = Drink(name: categories[0], inebriety: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: Int(categories[4])!, musc: Int(categories[5])!, myst: Int(categories[6])!, mox: Int(categories[7])!)
+                returnDictionary[newDrink.name] = newDrink
+            }
+        } catch  {
+            print(error);
+        }
+        
+        return returnDictionary
     }
     
     static func generateItemDatabase() -> [String: Item]{
@@ -109,7 +172,7 @@ class ItemsModel {
         
         do {
             let string = try String.init(contentsOf: URL, encoding: .utf8)
-            var lines = string.split(separator: "\n")
+            let lines = string.split(separator: "\n")
             for line in lines{
                 NSLog(String(line))
                 // Ignored "commented" out lines
@@ -117,7 +180,6 @@ class ItemsModel {
                     continue
                 }
                 let categories = line.components(separatedBy: "\t")
-                // item number    name    descid    image    use    access    autosell    plural
                 // Ignore unknown item ids
                 if categories.count == 1{
                     continue
@@ -127,6 +189,7 @@ class ItemsModel {
                     NSLog(String(category))
                 }
                 
+                // item number    name    descid    image    use    access    autosell    plural
                 let newItem = Item(ID: Int(categories[0])!, name: String(categories[1]), use: String(categories[4]), autosell: Int(categories[6])!)
                 returnDictionary[newItem.name] = newItem
             }
