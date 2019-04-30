@@ -17,6 +17,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     var detailViewController: DetailViewController? = nil
     var candies = [Candy]()
     var filteredCandies = [Candy]()
+    
+    var items = [Item]()
+    var filteredItems = [Item]()
     let searchController = UISearchController(searchResultsController: nil)
     let itemsModel = ItemsModel()
     
@@ -39,22 +42,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         // Setup the search footer
         tableView.tableFooterView = searchFooter
         
-        candies = [
-            Candy(category:"Chocolate", name:"Chocolate Bar"),
-            Candy(category:"Chocolate", name:"Chocolate Chip"),
-            Candy(category:"Chocolate", name:"Dark Chocolate"),
-            Candy(category:"Hard", name:"Lollipop"),
-            Candy(category:"Hard", name:"Candy Cane"),
-            Candy(category:"Hard", name:"Jaw Breaker"),
-            Candy(category:"Other", name:"Caramel"),
-            Candy(category:"Other", name:"Sour Chew"),
-            Candy(category:"Other", name:"Gummi Bear"),
-            Candy(category:"Other", name:"Candy Floss"),
-            Candy(category:"Chocolate", name:"Chocolate Coin"),
-            Candy(category:"Chocolate", name:"Chocolate Egg"),
-            Candy(category:"Other", name:"Jelly Beans"),
-            Candy(category:"Other", name:"Liquorice"),
-            Candy(category:"Hard", name:"Toffee Apple")]
+        for (_, value) in itemsModel.itemDatabase{
+            items.append(value)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,24 +65,24 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
-            searchFooter.setIsFilteringToShow(filteredItemCount: filteredCandies.count, of: candies.count)
-            return filteredCandies.count
+            searchFooter.setIsFilteringToShow(filteredItemCount: filteredItems.count, of: items.count)
+            return filteredItems.count
         }
-        
+
         searchFooter.setNotFiltering()
-        return candies.count
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let candy: Candy
+        let item: Item
         if isFiltering() {
-            candy = filteredCandies[indexPath.row]
+            item = filteredItems[indexPath.row]
         } else {
-            candy = candies[indexPath.row]
+            item = items[indexPath.row]
         }
-        cell.textLabel!.text = candy.name
-        cell.detailTextLabel!.text = candy.category
+        cell.textLabel!.text = item.name
+        cell.detailTextLabel!.text = item.use
         return cell
     }
     
@@ -110,13 +100,13 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Private instance methods
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredCandies = candies.filter({( candy : Candy) -> Bool in
-            let doesCategoryMatch = (scope == "All") || (candy.category == scope)
+        filteredItems = items.filter({( item : Item) -> Bool in
+            let doesCategoryMatch = (scope == "All") || (item.use == scope)
             
             if searchBarIsEmpty() {
                 return doesCategoryMatch
             } else {
-                return doesCategoryMatch && candy.name.lowercased().contains(searchText.lowercased())
+                return doesCategoryMatch && item.name.lowercased().contains(searchText.lowercased())
             }
         })
         tableView.reloadData()
