@@ -6,4 +6,10 @@
 //  Copyright © 2019 Tommy Lu. All rights reserved.
 //
 
+
 import Foundation
+
+struct Candy {
+    let category : String
+    let name : String
+}

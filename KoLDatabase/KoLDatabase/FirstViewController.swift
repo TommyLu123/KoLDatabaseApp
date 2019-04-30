@@ -20,6 +20,7 @@ class FirstViewController: UIDocumentBrowserViewController, UIDocumentBrowserVie
         
         allowsDocumentCreation = false
         allowsPickingMultipleItems = false
+        self.tabBarController?.viewControllers?.forEach { let _ = $0.view }
         // Update the style of the UIDocumentBrowserViewController
         // browserUserInterfaceStyle = .dark
         // view.tintColor = .white
