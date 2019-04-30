@@ -100,11 +100,13 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    //Presents new view
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        newViewController.modalPresentationStyle = .currentContext
+        //Find best context to hold tab view, or just leave commented
+        //newViewController.modalPresentationStyle = .currentContext
         self.present(newViewController, animated: false, completion: nil)
         
     }

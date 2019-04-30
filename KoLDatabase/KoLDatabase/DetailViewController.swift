@@ -24,30 +24,18 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-    
-    var detailCandy: Candy? {
-        didSet {
-            configureView()
-        }
-    }
-    
-    func configureView() {
-        if let detailCandy = detailCandy {
-            if let detailDescriptionLabel = detailDescriptionLabel{
-                detailDescriptionLabel.text = detailCandy.name
-                title = detailCandy.category
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func dismissDetailViewController(_ sender: Any) {
+        dismiss(animated: false) {
+            
+        }
     }
     
 }

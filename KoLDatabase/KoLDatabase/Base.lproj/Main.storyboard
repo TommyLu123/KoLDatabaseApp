@@ -274,6 +274,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <state key="normal" title="Exit"/>
+                                                <connections>
+                                                    <action selector="dismissDetailViewController:" destination="IIy-LD-j2s" eventType="touchUpInside" id="fVl-oy-DDs"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
