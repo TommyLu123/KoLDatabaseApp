@@ -23,6 +23,7 @@
 		22C5958B2277D1B300193821 /* inebriety.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C595872277D1B300193821 /* inebriety.txt */; };
 		22C595AF2277E62100193821 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595AE2277E62100193821 /* DetailViewController.swift */; };
 		22C595B12277E67300193821 /* SearchFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595B02277E67300193821 /* SearchFooter.swift */; };
+		22E399DB2278FC6B005B51E6 /* equipment.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22E399DA2278FC6B005B51E6 /* equipment.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		22C595872277D1B300193821 /* inebriety.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inebriety.txt; sourceTree = "<group>"; };
 		22C595AE2277E62100193821 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		22C595B02277E67300193821 /* SearchFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
+		22E399DA2278FC6B005B51E6 /* equipment.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equipment.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				22C595842277D1B200193821 /* fullness.txt */,
 				22C595872277D1B300193821 /* inebriety.txt */,
+				22E399DA2278FC6B005B51E6 /* equipment.txt */,
 				22C595862277D1B300193821 /* items.txt */,
 				22C595852277D1B200193821 /* modifiers.txt */,
 			);
@@ -166,6 +169,7 @@
 				22C595742277BFA300193821 /* LaunchScreen.storyboard in Resources */,
 				22C595712277BFA300193821 /* Assets.xcassets in Resources */,
 				22C595882277D1B300193821 /* fullness.txt in Resources */,
+				22E399DB2278FC6B005B51E6 /* equipment.txt in Resources */,
 				22C5956F2277BFA100193821 /* Main.storyboard in Resources */,
 				22C5958B2277D1B300193821 /* inebriety.txt in Resources */,
 				22C595892277D1B300193821 /* modifiers.txt in Resources */,

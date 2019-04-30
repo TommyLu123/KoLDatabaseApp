@@ -56,6 +56,16 @@ struct Drink {
     let mox : String
 }
 
+//name  power   requirements
+struct Equipment {
+    // Name
+    let name : String
+    // Power
+    let power : Int
+    // requirements
+    let requirements : String
+}
+
 // item number    name    descid    image    use    access    autosell    plural
 struct Item {
     // Item Number
@@ -82,12 +92,14 @@ class ItemsModel {
     // Item database where key is name, and value is item struct
     var foodDatabase : [String: Food]
     var drinkDatabase : [String: Drink]
+    var equipmentDatabase : [String: Equipment]
     var itemDatabase : [String: Item]
     var modifierDatabase : [String: Modifiers]
     
     init() {
         foodDatabase = ItemsModel.generateFoodDatabase()
         drinkDatabase = ItemsModel.generateDrinkDatabase()
+        equipmentDatabase = ItemsModel.generateEquipmentDatabase()
         itemDatabase = ItemsModel.generateItemDatabase()
         modifierDatabase = ItemsModel.generateModifierDatabase()
     }
@@ -152,6 +164,38 @@ class ItemsModel {
         
         return returnDictionary
     }
+    
+    static func generateEquipmentDatabase() -> [String: Equipment]{
+        var returnDictionary : [String: Equipment] = [:]
+        NSLog("Generating Equipment")
+        let filePath = Bundle.main.path(forResource: "equipment", ofType: "txt");
+        let URL = NSURL.fileURL(withPath: filePath!)
+        
+        do {
+            let string = try String.init(contentsOf: URL, encoding: .utf8)
+            let lines = string.split(separator: "\n")
+            for line in lines{
+                // Ignored "commented" out lines
+                if String(line).first == "#"{
+                    continue
+                }
+                let categories = line.components(separatedBy: "\t")
+                // Ignore unknown item ids
+                if categories.count == 1{
+                    continue
+                }
+                
+                // Drink    Inebriety    Level Req    quality    Adv    Musc    Myst    Moxie
+                let newEquipment = Equipment(name: categories[0], power: Int(categories[1])!, requirements: categories[2])
+                returnDictionary[newEquipment.name] = newEquipment
+            }
+        } catch  {
+            print(error);
+        }
+        
+        return returnDictionary
+    }
+    
     
     static func generateItemDatabase() -> [String: Item]{
         var returnDictionary : [String: Item] = [:]

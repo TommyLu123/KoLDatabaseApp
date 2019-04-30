@@ -18,6 +18,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     var candies = [Candy]()
     var filteredCandies = [Candy]()
     let searchController = UISearchController(searchResultsController: nil)
+    let itemsModel = ItemsModel()
     
     // MARK: - View Setup
     override func viewDidLoad() {

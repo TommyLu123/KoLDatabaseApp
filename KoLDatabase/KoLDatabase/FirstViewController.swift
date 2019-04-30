@@ -28,7 +28,6 @@ class FirstViewController: UIDocumentBrowserViewController, UIDocumentBrowserVie
         // Specify the allowed content types of your application via the Info.plist.
         
         // Do any additional setup after loading the view.
-        let testModel = ItemsModel()
     }
 
     
