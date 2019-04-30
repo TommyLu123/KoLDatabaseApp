@@ -102,8 +102,39 @@ class ItemsModel {
     }
     
     static func generateItemDatabase() -> [String: Item]{
-        let foo : [String: Item] = [:]
-        return foo
+        var returnDictionary : [String: Item] = [:]
+        NSLog("Generating Items")
+        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        let URL = NSURL.fileURL(withPath: filePath!)
+        
+        do {
+            let string = try String.init(contentsOf: URL, encoding: .utf8)
+            var lines = string.split(separator: "\n")
+            for line in lines{
+                NSLog(String(line))
+                // Ignored "commented" out lines
+                if String(line).first == "#"{
+                    continue
+                }
+                let categories = line.components(separatedBy: "\t")
+                // item number    name    descid    image    use    access    autosell    plural
+                // Ignore unknown item ids
+                if categories.count == 1{
+                    continue
+                }
+                
+                for category in categories{
+                    NSLog(String(category))
+                }
+                
+                let newItem = Item(ID: Int(categories[0])!, name: String(categories[1]), use: String(categories[4]), autosell: Int(categories[6])!)
+                returnDictionary[newItem.name] = newItem
+            }
+        } catch  {
+            print(error);
+        }
+        
+        return returnDictionary
     }
     
     static func generateModifierDatabase() -> [String: Modifiers]{
