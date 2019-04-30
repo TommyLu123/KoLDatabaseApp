@@ -26,13 +26,13 @@ struct Food {
     // Quality, could be struct, not necessary
     let quality : String
     // Adv
-    let adv : Int
+    let adv : String
     // Musc
-    let musc : Int
+    let musc : String
     // Myst
-    let myst : Int
+    let myst : String
     // Mox
-    let mox : Int
+    let mox : String
     
 }
 
@@ -47,13 +47,13 @@ struct Drink {
     // Quality, could be struct, not necessary
     let quality : String
     // Adv
-    let adv : Int
+    let adv : String
     // Musc
-    let musc : Int
+    let musc : String
     // Myst
-    let myst : Int
+    let myst : String
     // Mox
-    let mox : Int
+    let mox : String
 }
 
 // item number    name    descid    image    use    access    autosell    plural
@@ -94,15 +94,14 @@ class ItemsModel {
     
     static func generateFoodDatabase() -> [String: Food]{
         var returnDictionary : [String: Food] = [:]
-        NSLog("Generating Items")
-        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        NSLog("Generating Foods")
+        let filePath = Bundle.main.path(forResource: "fullness", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
         do {
             let string = try String.init(contentsOf: URL, encoding: .utf8)
             let lines = string.split(separator: "\n")
             for line in lines{
-                NSLog(String(line))
                 // Ignored "commented" out lines
                 if String(line).first == "#"{
                     continue
@@ -112,13 +111,8 @@ class ItemsModel {
                 if categories.count == 1{
                     continue
                 }
-                
-                for category in categories{
-                    NSLog(String(category))
-                }
-                
                 // Food    Fullness    Level Req    quality    Adv    Musc    Myst    Moxie
-                let newFood = Food(name: categories[0], fullness: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: Int(categories[4])!, musc: Int(categories[5])!, myst: Int(categories[6])!, mox: Int(categories[7])!)
+                let newFood = Food(name: categories[0], fullness: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: categories[4], musc: categories[5], myst: categories[6], mox: categories[7])
                 returnDictionary[newFood.name] = newFood
             }
         } catch  {
@@ -130,15 +124,14 @@ class ItemsModel {
     
     static func generateDrinkDatabase() -> [String: Drink]{
         var returnDictionary : [String: Drink] = [:]
-        NSLog("Generating Items")
-        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        NSLog("Generating Drinks")
+        let filePath = Bundle.main.path(forResource: "inebriety", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
         do {
             let string = try String.init(contentsOf: URL, encoding: .utf8)
             let lines = string.split(separator: "\n")
             for line in lines{
-                NSLog(String(line))
                 // Ignored "commented" out lines
                 if String(line).first == "#"{
                     continue
@@ -149,12 +142,8 @@ class ItemsModel {
                     continue
                 }
                 
-                for category in categories{
-                    NSLog(String(category))
-                }
-                
                 // Drink    Inebriety    Level Req    quality    Adv    Musc    Myst    Moxie
-                let newDrink = Drink(name: categories[0], inebriety: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: Int(categories[4])!, musc: Int(categories[5])!, myst: Int(categories[6])!, mox: Int(categories[7])!)
+                let newDrink = Drink(name: categories[0], inebriety: Int(categories[1])!, level: Int(categories[2])!, quality: categories[3], adv: categories[4], musc: categories[5], myst: categories[6], mox: categories[7])
                 returnDictionary[newDrink.name] = newDrink
             }
         } catch  {
@@ -174,7 +163,6 @@ class ItemsModel {
             let string = try String.init(contentsOf: URL, encoding: .utf8)
             let lines = string.split(separator: "\n")
             for line in lines{
-                NSLog(String(line))
                 // Ignored "commented" out lines
                 if String(line).first == "#"{
                     continue
@@ -183,10 +171,6 @@ class ItemsModel {
                 // Ignore unknown item ids
                 if categories.count == 1{
                     continue
-                }
-                
-                for category in categories{
-                    NSLog(String(category))
                 }
                 
                 // item number    name    descid    image    use    access    autosell    plural
@@ -202,15 +186,14 @@ class ItemsModel {
     
     static func generateModifierDatabase() -> [String: Modifiers]{
         var returnDictionary : [String: Modifiers] = [:]
-        NSLog("Generating Items")
-        let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
+        NSLog("Generating Modifiers")
+        let filePath = Bundle.main.path(forResource: "modifiers", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
         do {
             let string = try String.init(contentsOf: URL, encoding: .utf8)
             let lines = string.split(separator: "\n")
             for line in lines{
-                NSLog(String(line))
                 // Ignored "commented" out lines
                 if String(line).first == "#"{
                     continue
@@ -221,9 +204,6 @@ class ItemsModel {
                     continue
                 }
                 
-                for category in categories{
-                    NSLog(String(category))
-                }
                 // In this case we will be ignoring any type besides item
                 if categories[0] != "Item"{
                     continue
