@@ -10,9 +10,9 @@ import UIKit
 
 class DocumentViewController: UIViewController {
     
-    @IBOutlet weak var documentNameLabel: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
-    var document: UIDocument?
+    var document: Document?
     
     @IBOutlet weak var logPlainText: UITextView!
     
@@ -23,8 +23,8 @@ class DocumentViewController: UIViewController {
         document?.open(completionHandler: { (success) in
             if success {
                 // Display the content of the document, e.g.:
-                
-                self.document?.fileURL.lastPathComponent
+                self.logPlainText.text = self.document?.userText
+                self.navigationBar.topItem?.title = self.document?.fileURL.lastPathComponent
             } else {
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
