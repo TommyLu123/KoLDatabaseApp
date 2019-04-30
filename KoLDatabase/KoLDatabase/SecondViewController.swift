@@ -13,6 +13,8 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Load all views such that they are ready
+        tabBarController?.viewControllers?.forEach { let _ = $0.view }
         // Do any additional setup after loading the view, typically from a nib.
     }
 

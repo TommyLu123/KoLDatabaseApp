@@ -14,6 +14,8 @@ class DocumentViewController: UIViewController {
     
     var document: UIDocument?
     
+    @IBOutlet weak var logPlainText: UITextView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -21,7 +23,8 @@ class DocumentViewController: UIViewController {
         document?.open(completionHandler: { (success) in
             if success {
                 // Display the content of the document, e.g.:
-                self.documentNameLabel.text = self.document?.fileURL.lastPathComponent
+                
+                self.document?.fileURL.lastPathComponent
             } else {
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
@@ -31,6 +34,7 @@ class DocumentViewController: UIViewController {
     @IBAction func dismissDocumentViewController() {
         dismiss(animated: false) {
             self.document?.close(completionHandler: nil)
+            self.tabBarController?.viewControllers?.forEach { let _ = $0.view }
             
         }
     }

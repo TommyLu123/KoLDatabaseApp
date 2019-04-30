@@ -159,6 +159,7 @@
                     </view>
                     <connections>
                         <outlet property="documentNameLabel" destination="AYg-JN-nDf" id="Iwp-h4-8U4"/>
+                        <outlet property="logPlainText" destination="aLo-FI-Bs1" id="Ub7-pm-51o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ss8-ax-g1F" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -70,7 +70,7 @@ class FirstViewController: UIDocumentBrowserViewController, UIDocumentBrowserVie
         let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         documentViewController.document = Document(fileURL: documentURL)
         
-        documentViewController.modalPresentationStyle = .overCurrentContext
+        documentViewController.modalPresentationStyle = .currentContext
         
         present(documentViewController, animated: false, completion: nil)
     }
