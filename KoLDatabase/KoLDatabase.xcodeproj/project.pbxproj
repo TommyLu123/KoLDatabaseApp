@@ -15,6 +15,12 @@
 		22C595742277BFA300193821 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C595722277BFA300193821 /* LaunchScreen.storyboard */; };
 		22C5957C2277BFEA00193821 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5957B2277BFEA00193821 /* DocumentViewController.swift */; };
 		22C5957E2277BFF600193821 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5957D2277BFF600193821 /* Document.swift */; };
+		22C595802277D06300193821 /* ParserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5957F2277D06300193821 /* ParserModel.swift */; };
+		22C595822277D09400193821 /* DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595812277D09400193821 /* DatabaseModel.swift */; };
+		22C595882277D1B300193821 /* fullness.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C595842277D1B200193821 /* fullness.txt */; };
+		22C595892277D1B300193821 /* modifiers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C595852277D1B200193821 /* modifiers.txt */; };
+		22C5958A2277D1B300193821 /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C595862277D1B300193821 /* items.txt */; };
+		22C5958B2277D1B300193821 /* inebriety.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C595872277D1B300193821 /* inebriety.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		22C595752277BFA300193821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C5957B2277BFEA00193821 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		22C5957D2277BFF600193821 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		22C5957F2277D06300193821 /* ParserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserModel.swift; sourceTree = "<group>"; };
+		22C595812277D09400193821 /* DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModel.swift; sourceTree = "<group>"; };
+		22C595842277D1B200193821 /* fullness.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fullness.txt; sourceTree = "<group>"; };
+		22C595852277D1B200193821 /* modifiers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modifiers.txt; sourceTree = "<group>"; };
+		22C595862277D1B300193821 /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
+		22C595872277D1B300193821 /* inebriety.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inebriety.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +77,26 @@
 				22C5956B2277BFA100193821 /* SecondViewController.swift */,
 				22C5957B2277BFEA00193821 /* DocumentViewController.swift */,
 				22C5957D2277BFF600193821 /* Document.swift */,
+				22C5957F2277D06300193821 /* ParserModel.swift */,
+				22C595812277D09400193821 /* DatabaseModel.swift */,
+				22C595832277D12B00193821 /* Data */,
 				22C5956D2277BFA100193821 /* Main.storyboard */,
 				22C595702277BFA300193821 /* Assets.xcassets */,
 				22C595722277BFA300193821 /* LaunchScreen.storyboard */,
 				22C595752277BFA300193821 /* Info.plist */,
 			);
 			path = KoLDatabase;
+			sourceTree = "<group>";
+		};
+		22C595832277D12B00193821 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				22C595842277D1B200193821 /* fullness.txt */,
+				22C595872277D1B300193821 /* inebriety.txt */,
+				22C595862277D1B300193821 /* items.txt */,
+				22C595852277D1B200193821 /* modifiers.txt */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +159,11 @@
 			files = (
 				22C595742277BFA300193821 /* LaunchScreen.storyboard in Resources */,
 				22C595712277BFA300193821 /* Assets.xcassets in Resources */,
+				22C595882277D1B300193821 /* fullness.txt in Resources */,
 				22C5956F2277BFA100193821 /* Main.storyboard in Resources */,
+				22C5958B2277D1B300193821 /* inebriety.txt in Resources */,
+				22C595892277D1B300193821 /* modifiers.txt in Resources */,
+				22C5958A2277D1B300193821 /* items.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +176,10 @@
 			files = (
 				22C5956C2277BFA100193821 /* SecondViewController.swift in Sources */,
 				22C5957C2277BFEA00193821 /* DocumentViewController.swift in Sources */,
+				22C595802277D06300193821 /* ParserModel.swift in Sources */,
 				22C595682277BFA100193821 /* AppDelegate.swift in Sources */,
 				22C5956A2277BFA100193821 /* FirstViewController.swift in Sources */,
+				22C595822277D09400193821 /* DatabaseModel.swift in Sources */,
 				22C5957E2277BFF600193821 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

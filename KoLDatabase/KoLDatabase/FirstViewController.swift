@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+// This particular view controller is used for parsing preparsed data and displaying it.
 class FirstViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate {
     
     

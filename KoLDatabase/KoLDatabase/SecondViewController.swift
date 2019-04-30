@@ -8,6 +8,7 @@
 
 import UIKit
 
+// This particular view controller is used for the database
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
