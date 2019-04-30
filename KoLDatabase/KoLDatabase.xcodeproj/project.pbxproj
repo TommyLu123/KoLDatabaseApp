@@ -74,9 +74,9 @@
 			children = (
 				22C595672277BFA100193821 /* AppDelegate.swift */,
 				22C595692277BFA100193821 /* FirstViewController.swift */,
-				22C5956B2277BFA100193821 /* SecondViewController.swift */,
 				22C5957B2277BFEA00193821 /* DocumentViewController.swift */,
 				22C5957D2277BFF600193821 /* Document.swift */,
+				22C5956B2277BFA100193821 /* SecondViewController.swift */,
 				22C5957F2277D06300193821 /* ParserModel.swift */,
 				22C595812277D09400193821 /* DatabaseModel.swift */,
 				22C595832277D12B00193821 /* Data */,
