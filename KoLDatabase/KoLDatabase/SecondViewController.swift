@@ -32,7 +32,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Items"
+        
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
         // Setup the Scope Bar
@@ -42,9 +44,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         // Setup the search footer
         tableView.tableFooterView = searchFooter
         
-        for (_, value) in itemsModel.itemDatabase{
-            items.append(value)
-        }
+        items = itemsModel.itemTable
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +82,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
             item = items[indexPath.row]
         }
         cell.textLabel!.text = item.name
-        cell.detailTextLabel!.text = item.use
+        cell.detailTextLabel!.text = "ItemID: \(String(item.ID)), Item Usage: \(item.use)"
         return cell
     }
     

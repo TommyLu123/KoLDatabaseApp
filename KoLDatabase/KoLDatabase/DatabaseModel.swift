@@ -95,12 +95,15 @@ class ItemsModel {
     var equipmentDatabase : [String: Equipment]
     var itemDatabase : [String: Item]
     var modifierDatabase : [String: Modifiers]
+    var itemTable : [Item]
     
     init() {
         foodDatabase = ItemsModel.generateFoodDatabase()
         drinkDatabase = ItemsModel.generateDrinkDatabase()
         equipmentDatabase = ItemsModel.generateEquipmentDatabase()
-        itemDatabase = ItemsModel.generateItemDatabase()
+        let itemDatabaseValues = ItemsModel.generateItemDatabase()
+        itemDatabase = itemDatabaseValues.0
+        itemTable = itemDatabaseValues.1
         modifierDatabase = ItemsModel.generateModifierDatabase()
     }
     
@@ -197,8 +200,9 @@ class ItemsModel {
     }
     
     
-    static func generateItemDatabase() -> [String: Item]{
+    static func generateItemDatabase() -> ([String: Item], [Item]){
         var returnDictionary : [String: Item] = [:]
+        var returnTable : [Item] = []
         NSLog("Generating Items")
         let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
@@ -220,12 +224,14 @@ class ItemsModel {
                 // item number    name    descid    image    use    access    autosell    plural
                 let newItem = Item(ID: Int(categories[0])!, name: String(categories[1]), use: String(categories[4]), autosell: Int(categories[6])!)
                 returnDictionary[newItem.name] = newItem
+                returnTable.append(newItem)
+                
             }
         } catch  {
             print(error);
         }
         
-        return returnDictionary
+        return (returnDictionary, returnTable)
     }
     
     static func generateModifierDatabase() -> [String: Modifiers]{
