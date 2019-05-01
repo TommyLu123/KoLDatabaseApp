@@ -24,16 +24,43 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var IDAndUseLabel: UILabel!
+    @IBOutlet weak var autosellLabel: UILabel!
+    @IBOutlet weak var qualityAndPowerLabel: UILabel!
+    @IBOutlet weak var fullnessAndIneberityLabel: UILabel!
+    @IBOutlet weak var requirementsLabel: UILabel!
+    @IBOutlet weak var modifierListTextView: UITextView!
+    
+    var itemName: String?
+    var IDAndUse: String?
+    var autosell: String?
+    var qualityAndPower: String?
+    var fullnessAndIneberity: String?
+    var requirements: String?
+    var modifierList: String?
+    var searchController: UISearchController?
+    var wasActive: Bool?
+    var searchControllerSearch: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        itemNameLabel.text = itemName
+        IDAndUseLabel.text = IDAndUse
+        autosellLabel.text = autosell
+        qualityAndPowerLabel.text = qualityAndPower
+        fullnessAndIneberityLabel.text = fullnessAndIneberity
+        requirementsLabel.text = requirements
+        modifierListTextView.text = modifierList
     }
     
     @IBAction func dismissDetailViewController(_ sender: Any) {
         dismiss(animated: false) {
+            self.tabBarController?.viewControllers?.forEach { let _ = $0.view }
+            if self.wasActive!{
+                self.searchController?.isActive = true
+                self.searchController?.searchBar.text = self.searchControllerSearch
+            }
             
         }
     }

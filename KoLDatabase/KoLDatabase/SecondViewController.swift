@@ -15,9 +15,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var searchFooter: SearchFooter!
     
     var detailViewController: DetailViewController? = nil
-    var candies = [Candy]()
-    var filteredCandies = [Candy]()
-    
+
     var items = [Item]()
     var filteredItems = [Item]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -26,15 +24,16 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - View Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tabBarController?.viewControllers?.forEach { let _ = $0.view }
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Items"
+        self.definesPresentationContext = true
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.definesPresentationContext = true
         definesPresentationContext = true
         
         // Setup the Scope Bar
@@ -92,21 +91,94 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         //Find best context to hold tab view, or just leave commented
-        newViewController.modalPresentationStyle = .pageSheet
+        newViewController.modalPresentationStyle = .overCurrentContext
+        // Return search when done
+        newViewController.searchController = searchController
+        
+        let food = "food"
+        
+        let drink = "drink"
+        var item:Item
+        if isFiltering(){
+            item = filteredItems[indexPath.row]
+        }else{
+            item = items[indexPath.row]
+        }
+        // Set descriptions for item in pop up
+        newViewController.itemName = item.name
+        newViewController.IDAndUse = "Item ID: \(item.ID) | Item Use: \(item.use)"
+        newViewController.autosell = "Autosell Value: \(item.autosell)"
+        
+        //Set power or quality
+        if self.isEquipment(item: item){
+            newViewController.qualityAndPower = String((itemsModel.equipmentDatabase[item.name]?.power)!)
+        }else if item.use.contains(food){
+            newViewController.qualityAndPower = (itemsModel.foodDatabase[item.name]?.quality)!
+        }else if item.use.contains(drink){
+            newViewController.qualityAndPower = (itemsModel.drinkDatabase[item.name]?.quality)!
+        }else{
+            newViewController.qualityAndPower = ""
+        }
+        
+        //Set fullness or inebriety
+        if item.use.contains(food){
+            newViewController.qualityAndPower = String((itemsModel.foodDatabase[item.name]?.fullness)!)
+        }else if item.use.contains(drink){
+            newViewController.qualityAndPower = String((itemsModel.drinkDatabase[item.name]?.inebriety)!)
+        }else{
+            newViewController.qualityAndPower = ""
+        }
+        
+        //Set requirements
+        if self.isEquipment(item: item){
+            newViewController.qualityAndPower = (itemsModel.equipmentDatabase[item.name]?.requirements)!
+        }else if item.use.contains(food){
+            newViewController.qualityAndPower = String((itemsModel.foodDatabase[item.name]?.level)!)
+        }else if item.use.contains(drink){
+            newViewController.qualityAndPower = String((itemsModel.drinkDatabase[item.name]?.level)!)
+        }else{
+            newViewController.qualityAndPower = ""
+        }
+        
+        //Set Modifier List
+        var modifierTextBoxString = ""
+        if itemsModel.modifierDatabase[item.name] != nil{
+            for modifier in (itemsModel.modifierDatabase[item.name]?.modifiersList)!{
+                modifierTextBoxString = "\(modifierTextBoxString)\(modifier)\n"
+            }
+        }
+        newViewController.modifierList = modifierTextBoxString
+        
+        if isFiltering(){
+            newViewController.searchControllerSearch = searchController.searchBar.text!
+            searchController.isActive = false
+            newViewController.wasActive = true
+        }else{
+            newViewController.wasActive = false
+        }
+        
         self.present(newViewController, animated: false, completion: nil)
         
     }
 
+    func isEquipment(item: Item) -> Bool{
+        let equipment = ["hat", "weapon", "offhand", "container", "shirt", "pants","accessory"]
+        
+        for equip in equipment{
+            if item.use.contains(equip){
+                return true
+            }
+        }
+        return false
+    }
     // MARK: - Private instance methods
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredItems = items.filter({( item : Item) -> Bool in
-            let equipment = ["hat", "weapon", "offhand", "container", "shirt", "pants","accessory"]
-            
             var doesCategoryMatch = (scope == "All") || (item.use.contains(scope.lowercased()))
             
-            for equip in equipment{
-                if item.use.contains(equip){
+            if scope == "Equipment"{
+                if self.isEquipment(item: item){
                     doesCategoryMatch = true
                 }
             }

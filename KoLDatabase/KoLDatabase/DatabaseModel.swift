@@ -9,12 +9,6 @@
 
 import Foundation
 
-struct Candy {
-    let category : String
-    let name : String
-}
-
-
 // Food    Fullness    Level Req    quality    Adv    Musc    Myst    Moxie
 struct Food {
     // Food
@@ -86,6 +80,7 @@ struct Modifiers {
     let name : String
     // modifiers take many forms (Effect: x, Effect: duration, Moxie Percentage: +x, Free Pull). Some do not have modifiers, some with good categories do.
     let modifiers : [String: String]
+    let modifiersList : [String]
 }
 
 class ItemsModel {
@@ -275,7 +270,7 @@ class ItemsModel {
                     }
                 }
                 // Type name    Modifiers
-                let newModifiers = Modifiers(type: categories[0], name: categories[1], modifiers: modifierDictionary)
+                let newModifiers = Modifiers(type: categories[0], name: categories[1], modifiers: modifierDictionary, modifiersList: modifierList)
                 returnDictionary[newModifiers.name] = newModifiers
             }
         } catch  {
