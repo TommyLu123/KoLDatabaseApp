@@ -81,6 +81,12 @@ class PieGraphViewController: UIViewController {
         self.pieGraph.highlightValues(nil)
     }
 
+    @IBAction func dismissPieGraphViewController(_ sender: Any) {
+        dismiss(animated: false) {
+            self.tabBarController?.viewControllers?.forEach { let _ = $0.view }
+            
+        }
+    }
     /*
     // MARK: - Navigation
 
