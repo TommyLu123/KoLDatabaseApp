@@ -26,6 +26,7 @@
 		22E399DB2278FC6B005B51E6 /* equipment.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22E399DA2278FC6B005B51E6 /* equipment.txt */; };
 		22E5D47C227A60000008194C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E5D479227A5FF30008194C /* Charts.framework */; };
 		22E5D47D227A60000008194C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22E5D479227A5FF30008194C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437F5954EF2DC8D962BCB03A /* Pods_KoLDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,9 @@
 		22C595B02277E67300193821 /* SearchFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
 		22E399DA2278FC6B005B51E6 /* equipment.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equipment.txt; sourceTree = "<group>"; };
 		22E5D473227A5FF30008194C /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../../../../Downloads/Charts-3.2.2/Charts.xcodeproj"; sourceTree = "<group>"; };
+		374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoLDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.release.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.release.xcconfig"; sourceTree = "<group>"; };
+		F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.debug.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E5D47C227A60000008194C /* Charts.framework in Frameworks */,
+				437F5954EF2DC8D962BCB03A /* Pods_KoLDatabase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +105,7 @@
 				22C595662277BFA100193821 /* KoLDatabase */,
 				22C595652277BFA100193821 /* Products */,
 				22E5D48D227A7E2B0008194C /* Frameworks */,
+				AA97ED00DE7CEF196460D003 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,8 +171,19 @@
 		22E5D48D227A7E2B0008194C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA97ED00DE7CEF196460D003 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */,
+				9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,10 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22C595782277BFA300193821 /* Build configuration list for PBXNativeTarget "KoLDatabase" */;
 			buildPhases = (
+				E540A5DD19A7EEC97887C162 /* [CP] Check Pods Manifest.lock */,
 				22C595602277BFA100193821 /* Sources */,
 				22C595612277BFA100193821 /* Frameworks */,
 				22C595622277BFA100193821 /* Resources */,
 				22E5D45C227A5EBF0008194C /* Embed Frameworks */,
+				E9411C643E041C86FD60FA6F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -263,6 +282,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E540A5DD19A7EEC97887C162 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KoLDatabase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9411C643E041C86FD60FA6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22C595602277BFA100193821 /* Sources */ = {
@@ -421,6 +487,7 @@
 		};
 		22C595792277BFA300193821 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -441,6 +508,7 @@
 		};
 		22C5957A2277BFA300193821 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
