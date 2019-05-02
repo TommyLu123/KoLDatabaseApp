@@ -42,7 +42,6 @@ class DocumentViewController: UIViewController {
                         //parse
                         self.parserModel = ParserModel(documentText: (self.document?.userText)!)
                         self.parserModel?.parse()
-                        NSLog("Finished Parsing")
                         self.turnSpentByAreaButton.isEnabled = true
                         self.turnSpentPerLevelButton.isEnabled = true
                         self.turnGainBySourceButton.isEnabled = true
@@ -100,6 +99,13 @@ class DocumentViewController: UIViewController {
         present(pieViewController, animated: false, completion: nil)
     }
     @IBAction func onMeatNetByLevelPress(_ sender: Any) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let positiveNegativeViewController = storyBoard.instantiateViewController(withIdentifier: "PositiveNegativeBarChartViewController") as! PositiveNegativeBarChartViewController
+        
+        //horizontalViewcontroller.modalPresentationStyle = .currentContext
+        positiveNegativeViewController.parserModel = parserModel
+        present(positiveNegativeViewController, animated: false, completion: nil)
     }
     
     @IBAction func dismissDocumentViewController() {

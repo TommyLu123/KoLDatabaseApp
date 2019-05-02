@@ -89,7 +89,6 @@ class HorizontalBarGraphViewController: UIViewController {
                 nameValues.append(String(entry.zone.prefix(15)))
                 let dataEntry = BarChartDataEntry(x: Double(i), y: Double(entry.turnsSpent))
                 dataEntries.append(dataEntry)
-                NSLog("\(i), \(entry.zone), \(entry.turnsSpent)")
             }
             let chartDataSet = BarChartDataSet(values: dataEntries, label: "Turn Count")
             let chartData = BarChartData(dataSet: chartDataSet)

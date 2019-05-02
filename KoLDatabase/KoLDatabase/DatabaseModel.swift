@@ -104,7 +104,6 @@ class ItemsModel {
     
     static func generateFoodDatabase() -> [String: Food]{
         var returnDictionary : [String: Food] = [:]
-        NSLog("Generating Foods")
         let filePath = Bundle.main.path(forResource: "fullness", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
@@ -134,7 +133,6 @@ class ItemsModel {
     
     static func generateDrinkDatabase() -> [String: Drink]{
         var returnDictionary : [String: Drink] = [:]
-        NSLog("Generating Drinks")
         let filePath = Bundle.main.path(forResource: "inebriety", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
@@ -165,7 +163,6 @@ class ItemsModel {
     
     static func generateEquipmentDatabase() -> [String: Equipment]{
         var returnDictionary : [String: Equipment] = [:]
-        NSLog("Generating Equipment")
         let filePath = Bundle.main.path(forResource: "equipment", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
@@ -198,7 +195,6 @@ class ItemsModel {
     static func generateItemDatabase() -> ([String: Item], [Item]){
         var returnDictionary : [String: Item] = [:]
         var returnTable : [Item] = []
-        NSLog("Generating Items")
         let filePath = Bundle.main.path(forResource: "items", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         
@@ -231,7 +227,6 @@ class ItemsModel {
     
     static func generateModifierDatabase() -> [String: Modifiers]{
         var returnDictionary : [String: Modifiers] = [:]
-        NSLog("Generating Modifiers")
         let filePath = Bundle.main.path(forResource: "modifiers", ofType: "txt");
         let URL = NSURL.fileURL(withPath: filePath!)
         

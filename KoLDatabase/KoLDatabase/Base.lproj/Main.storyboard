@@ -515,6 +515,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <state key="normal" title="Exit"/>
+                                                <connections>
+                                                    <action selector="dismissPositiveNegativeBarChartViewController:" destination="naq-WC-21z" eventType="touchUpInside" id="0c2-qr-LUT"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -536,6 +539,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ESk-dR-TAF"/>
                     </view>
+                    <connections>
+                        <outlet property="positiveNegativeBarChart" destination="MQZ-QY-10r" id="n0v-6t-Gwr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUA-9Q-7xG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

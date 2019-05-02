@@ -82,26 +82,21 @@ class ParserModel {
             let trimmedLine = line.trimmingCharacters(in: .whitespaces)
             // Adventure by zone block
             if trimmedLine.contains("ADVENTURES"){
-                NSLog(trimmedLine)
-                NSLog("Adventure")
                 self.turnsSpentPerArea = parseTurnsSpentPerArea(startingIndex: index)
             }
             
             // Adventure by level
             if trimmedLine.contains("LEVELS"){
-                NSLog("Level")
                 self.turnsSpentPerLevel = parseTurnsSpentPerLevel(startingIndex: index)
             }
             
             // Turn Gain by source
             if trimmedLine.contains("EATING AND DRINKING AND USING"){
-                NSLog("Eating")
                 self.turnGains = parseTurnGain(startingIndex: index)
             }
             
             // Meat loss and gain by level
             if trimmedLine.contains("MEAT"){
-                NSLog("MEAT")
                 self.meatNet = parseMeatNet(startingIndex: index)
             }
         }
@@ -120,12 +115,8 @@ class ParserModel {
         var index = startingIndex + 2
         while(indexEnd){
             let line = lines[index]
-            NSLog(line)
             if line.contains(":"){
-                
-                
                 let areaAndTurn = line.components(separatedBy: ":")
-                NSLog(areaAndTurn[1])
                 let data = AreaAndTurnsSpent(zone: areaAndTurn[0], turnsSpent: Int(areaAndTurn[1].trimmingCharacters(in: .whitespacesAndNewlines))!)
                 returnTurnsSpentPerArea.append(data)
                 index += 1
@@ -234,7 +225,7 @@ class ParserModel {
         var index = startingIndex + 5
         while(indexEnd){
             let line = lines[index]
-            if line.contains("Hit"){
+            if line.contains("Level"){
                 let patternDigits = "\\d+"
                 var matches = matchRegex(for: patternDigits, in: line)
                 
