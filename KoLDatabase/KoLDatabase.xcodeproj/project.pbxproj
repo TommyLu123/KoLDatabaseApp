@@ -24,27 +24,8 @@
 		22C595AF2277E62100193821 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595AE2277E62100193821 /* DetailViewController.swift */; };
 		22C595B12277E67300193821 /* SearchFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595B02277E67300193821 /* SearchFooter.swift */; };
 		22E399DB2278FC6B005B51E6 /* equipment.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22E399DA2278FC6B005B51E6 /* equipment.txt */; };
-		22E5D47C227A60000008194C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22E5D479227A5FF30008194C /* Charts.framework */; };
-		22E5D47D227A60000008194C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22E5D479227A5FF30008194C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437F5954EF2DC8D962BCB03A /* Pods_KoLDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		22E5D478227A5FF30008194C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22E5D473227A5FF30008194C /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
-			remoteInfo = Charts;
-		};
-		22E5D47A227A5FF30008194C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22E5D473227A5FF30008194C /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
-			remoteInfo = ChartsTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		22E5D45C227A5EBF0008194C /* Embed Frameworks */ = {
@@ -53,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				22E5D47D227A60000008194C /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +60,6 @@
 		22C595AE2277E62100193821 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		22C595B02277E67300193821 /* SearchFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
 		22E399DA2278FC6B005B51E6 /* equipment.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equipment.txt; sourceTree = "<group>"; };
-		22E5D473227A5FF30008194C /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../../../../Downloads/Charts-3.2.2/Charts.xcodeproj"; sourceTree = "<group>"; };
 		374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoLDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.release.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.release.xcconfig"; sourceTree = "<group>"; };
 		F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.debug.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22E5D47C227A60000008194C /* Charts.framework in Frameworks */,
 				437F5954EF2DC8D962BCB03A /* Pods_KoLDatabase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,7 +112,6 @@
 				22C595702277BFA300193821 /* Assets.xcassets */,
 				22C595722277BFA300193821 /* LaunchScreen.storyboard */,
 				22C595752277BFA300193821 /* Info.plist */,
-				22E5D472227A5F390008194C /* Libraries */,
 			);
 			path = KoLDatabase;
 			sourceTree = "<group>";
@@ -151,23 +128,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		22E5D472227A5F390008194C /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				22E5D473227A5FF30008194C /* Charts.xcodeproj */,
-			);
-			path = Libraries;
-			sourceTree = "<group>";
-		};
-		22E5D474227A5FF30008194C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22E5D479227A5FF30008194C /* Charts.framework */,
-				22E5D47B227A5FF30008194C /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		22E5D48D227A7E2B0008194C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +142,6 @@
 				F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */,
 				9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -235,35 +194,12 @@
 			mainGroup = 22C5955B2277BFA100193821;
 			productRefGroup = 22C595652277BFA100193821 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 22E5D474227A5FF30008194C /* Products */;
-					ProjectRef = 22E5D473227A5FF30008194C /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				22C595632277BFA100193821 /* KoLDatabase */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		22E5D479227A5FF30008194C /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = 22E5D478227A5FF30008194C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22E5D47B227A5FF30008194C /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = 22E5D47A227A5FF30008194C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		22C595622277BFA100193821 /* Resources */ = {

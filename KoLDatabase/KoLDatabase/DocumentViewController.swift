@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class DocumentViewController: UIViewController {
     
@@ -34,7 +35,7 @@ class DocumentViewController: UIViewController {
                     //parse
                     self.parserModel = ParserModel(documentText: (self.document?.userText)!)
                     self.parserModel?.parse()
-                    
+                    NSLog("Finished Parsing")
                     //activate graph buttons on finish parse
                     
                 }
@@ -42,6 +43,14 @@ class DocumentViewController: UIViewController {
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
         })
+    }
+    @IBAction func onTurnsSpentByAreaPress(_ sender: Any) {
+    }
+    @IBAction func onTurnsSpentPerLevelPress(_ sender: Any) {
+    }
+    @IBAction func onTurnGainBySourcePress(_ sender: Any) {
+    }
+    @IBAction func onMeatNetByLevelPress(_ sender: Any) {
     }
     
     @IBAction func dismissDocumentViewController() {
