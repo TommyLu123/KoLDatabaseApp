@@ -19,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Loading Document Browser" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
-                                <rect key="frame" x="23" y="344" width="368" height="37"/>
+                                <rect key="frame" x="112.5" y="353.5" width="189.5" height="18"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Wait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
-                                <rect key="frame" x="169.5" y="389" width="75" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <rect key="frame" x="179" y="379.5" width="56" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -209,7 +209,7 @@
         <scene sceneID="HBp-RX-Cys">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nOS-Ff-DrU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Parser" image="second" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Parser" image="bar_chart" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D4b-b0-2sa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -434,7 +434,7 @@
         <scene sceneID="YDn-m1-49l">
             <objects>
                 <splitViewController id="4f2-4Q-BeF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Database" image="second" selectedImage="second" id="QIu-ka-QX4"/>
+                    <tabBarItem key="tabBarItem" title="Database" image="database" id="QIu-ka-QX4"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="sQW-Bz-R4v"/>
                     <connections>
@@ -549,6 +549,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="bar_chart" width="30" height="30"/>
+        <image name="database" width="30" height="30"/>
     </resources>
 </document>
