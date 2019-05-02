@@ -91,6 +91,13 @@ class DocumentViewController: UIViewController {
         present(horizontalViewcontroller, animated: false, completion: nil)
     }
     @IBAction func onTurnGainBySourcePress(_ sender: Any) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let pieViewController = storyBoard.instantiateViewController(withIdentifier: "PieGraphViewController") as! PieGraphViewController
+        
+        //horizontalViewcontroller.modalPresentationStyle = .currentContext
+        pieViewController.parserModel = parserModel
+        present(pieViewController, animated: false, completion: nil)
     }
     @IBAction func onMeatNetByLevelPress(_ sender: Any) {
     }
