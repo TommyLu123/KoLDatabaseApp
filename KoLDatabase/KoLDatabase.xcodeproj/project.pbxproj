@@ -24,6 +24,7 @@
 		22C595AF2277E62100193821 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595AE2277E62100193821 /* DetailViewController.swift */; };
 		22C595B12277E67300193821 /* SearchFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C595B02277E67300193821 /* SearchFooter.swift */; };
 		22E399DB2278FC6B005B51E6 /* equipment.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22E399DA2278FC6B005B51E6 /* equipment.txt */; };
+		22E5D49C227A8ACC0008194C /* HorizontalBarGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5D49B227A8ACC0008194C /* HorizontalBarGraphViewController.swift */; };
 		437F5954EF2DC8D962BCB03A /* Pods_KoLDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		22C595AE2277E62100193821 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		22C595B02277E67300193821 /* SearchFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFooter.swift; sourceTree = "<group>"; };
 		22E399DA2278FC6B005B51E6 /* equipment.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equipment.txt; sourceTree = "<group>"; };
+		22E5D49B227A8ACC0008194C /* HorizontalBarGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarGraphViewController.swift; sourceTree = "<group>"; };
 		374730631AA89BDC14EFEB67 /* Pods_KoLDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KoLDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D62D45AF122BFB409FB3F75 /* Pods-KoLDatabase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.release.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.release.xcconfig"; sourceTree = "<group>"; };
 		F3713D8AE1FAD3D0AC470918 /* Pods-KoLDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoLDatabase.debug.xcconfig"; path = "Target Support Files/Pods-KoLDatabase/Pods-KoLDatabase.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,9 +105,10 @@
 				22C5957B2277BFEA00193821 /* DocumentViewController.swift */,
 				22C5957D2277BFF600193821 /* Document.swift */,
 				22C5957F2277D06300193821 /* ParserModel.swift */,
-				22C595812277D09400193821 /* DatabaseModel.swift */,
+				22E5D49B227A8ACC0008194C /* HorizontalBarGraphViewController.swift */,
 				22C5956B2277BFA100193821 /* SecondViewController.swift */,
 				22C595AE2277E62100193821 /* DetailViewController.swift */,
+				22C595812277D09400193821 /* DatabaseModel.swift */,
 				22C595B02277E67300193821 /* SearchFooter.swift */,
 				22C595832277D12B00193821 /* Data */,
 				22C5956D2277BFA100193821 /* Main.storyboard */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22C5956C2277BFA100193821 /* SecondViewController.swift in Sources */,
+				22E5D49C227A8ACC0008194C /* HorizontalBarGraphViewController.swift in Sources */,
 				22C5957C2277BFEA00193821 /* DocumentViewController.swift in Sources */,
 				22C595802277D06300193821 /* ParserModel.swift in Sources */,
 				22C595682277BFA100193821 /* AppDelegate.swift in Sources */,

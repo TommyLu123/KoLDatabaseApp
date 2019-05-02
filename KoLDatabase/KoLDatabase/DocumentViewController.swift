@@ -45,6 +45,13 @@ class DocumentViewController: UIViewController {
         })
     }
     @IBAction func onTurnsSpentByAreaPress(_ sender: Any) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let horizontalViewcontroller = storyBoard.instantiateViewController(withIdentifier: "HorizontalBarGraphViewController") as! HorizontalBarGraphViewController
+        
+        horizontalViewcontroller.modalPresentationStyle = .currentContext
+        
+        present(horizontalViewcontroller, animated: false, completion: nil)
     }
     @IBAction func onTurnsSpentPerLevelPress(_ sender: Any) {
     }

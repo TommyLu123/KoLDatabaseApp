@@ -8,6 +8,7 @@
 
 import UIKit
 
+// This particular view controller is used for parsing the item database and displaying it.
 class MasterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
