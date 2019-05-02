@@ -85,14 +85,17 @@ class ParserModel {
                 self.turnsSpentPerArea = parseTurnsSpentPerArea(startingIndex: index)
             }
             
+            // Adventure by level
             if line == "LEVELS"{
                 self.turnsSpentPerLevel = parseTurnsSpentPerLevel(startingIndex: index)
             }
             
+            // Turn Gain by source
             if line == "EATING AND DRINKING AND USING"{
                 self.turnGains = parseTurnGain(startingIndex: index)
             }
             
+            // Meat loss and gain by level
             if line == "MEAT"{
                 self.meatNet = parseMeatNet(startingIndex: index)
             }

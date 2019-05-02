@@ -43,13 +43,6 @@
 			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
 			remoteInfo = ChartsTests;
 		};
-		22E5D47E227A60000008194C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22E5D473227A5FF30008194C /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A58A4ED274A941CA248EA921;
-			remoteInfo = Charts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +99,7 @@
 			children = (
 				22C595662277BFA100193821 /* KoLDatabase */,
 				22C595652277BFA100193821 /* Products */,
+				22E5D48D227A7E2B0008194C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +162,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		22E5D48D227A7E2B0008194C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,7 +184,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22E5D47F227A60000008194C /* PBXTargetDependency */,
 			);
 			name = KoLDatabase;
 			productName = KoLDatabase;
@@ -282,14 +282,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		22E5D47F227A60000008194C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 22E5D47E227A60000008194C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		22C5956D2277BFA100193821 /* Main.storyboard */ = {

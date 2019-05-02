@@ -13,9 +13,14 @@ class DocumentViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     var document: Document?
+    var parserModel: ParserModel?
     
     @IBOutlet weak var logPlainText: UITextView!
     
+    @IBOutlet weak var turnSpentByAreaButton: UIButton!
+    @IBOutlet weak var turnSpentPerLevelButton: UIButton!
+    @IBOutlet weak var turnGainBySourceButton: UIButton!
+    @IBOutlet weak var meatNetByLevelButton: UIButton!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -27,6 +32,11 @@ class DocumentViewController: UIViewController {
                 self.navigationBar.topItem?.title = self.document?.fileURL.lastPathComponent
                 if self.logPlainText.text.contains("Ascension Log Visualizer"){
                     //parse
+                    self.parserModel = ParserModel(documentText: (self.document?.userText)!)
+                    self.parserModel?.parse()
+                    
+                    //activate graph buttons on finish parse
+                    
                 }
             } else {
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
