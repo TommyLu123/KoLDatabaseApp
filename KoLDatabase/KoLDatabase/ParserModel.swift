@@ -33,7 +33,7 @@ struct TurnGain{
 struct MeatGainAndLoss {
     let level: Int
     let meatGained: Int
-    let meatLost: Int
+    let meatSpent: Int
 }
 
 //regex pattern matcher
@@ -56,10 +56,16 @@ func matchRegex(for regex: String, in text: String) -> [String] {
 class ParserModel {
     var documentText: String
     var lines: [String]
-    // Tuple to perserve order
+    // For generating horizontal chart of area and turns spent in area
+    // No Sort, leave as list
     var turnsSpentPerArea: [AreaAndTurnsSpent]
+    // For generating horizontal chart of levels and turns spent in level
+    // Sort by Level, already sorted
     var turnsSpentPerLevel: [LevelAndTurnsSpent]
+    // For generating pie chart of all four turn gain avenues
     var turnGains: TurnGain
+    // For generating positive/negative bar chart for each level of meat gained
+    var meatNet: [MeatGainAndLoss]
     
     init(documentText: String){
         self.documentText = documentText
@@ -67,6 +73,7 @@ class ParserModel {
         self.turnsSpentPerArea = []
         self.turnsSpentPerLevel = []
         self.turnGains = TurnGain(eating: 0, drinking: 0, using: 0, rollover: 0)
+        self.meatNet = []
     }
     
     func parse(){
@@ -86,6 +93,9 @@ class ParserModel {
                 self.turnGains = parseTurnGain(startingIndex: index)
             }
             
+            if line == "MEAT"{
+                self.meatNet = parseMeatNet(startingIndex: index)
+            }
         }
     }
     
@@ -94,7 +104,7 @@ class ParserModel {
         // index - ADVENTURES
         // index + 1 - --------
         // index + 2 - AREA: TURNS
-        // index + ...
+        // index 2 repeat ...
         // index end - blank or QUEST TURNS
         
         var returnTurnsSpentPerArea: [AreaAndTurnsSpent] = []
@@ -108,10 +118,10 @@ class ParserModel {
                 let areaAndTurn = line.components(separatedBy: ":")
                 let data = AreaAndTurnsSpent(zone: areaAndTurn[0], turnsSpent: Int(areaAndTurn[1])!)
                 returnTurnsSpentPerArea.append(data)
+                index += 1
             }else{
                 indexEnd = false
             }
-            index += 1
         }
         return returnTurnsSpentPerArea
     }
@@ -124,8 +134,8 @@ class ParserModel {
         // index + 3 - Combats: c
         // index + 4 - Noncombats: nc
         // index + 5 - Other: o
-        // index + ...
-        // index end - blank or QUEST TURNS
+        // index 2-5 repeat ...
+        // index end - blank or total combats etc
         
         var returnLevelAndTurnsSpent: [LevelAndTurnsSpent] = []
         var indexEnd = true
@@ -159,10 +169,10 @@ class ParserModel {
                 
                 let data = LevelAndTurnsSpent(level: Int(level)!, turnsSpent: Int(turnsSpent)!, combatTurnsSpent: Int(combat)!, nonCombatTurnsSpent: Int(nonCombat)!, otherTurnsSpent: Int(other)!)
                 returnLevelAndTurnsSpent.append(data)
+                index += 4
             }else{
                 indexEnd = false
             }
-            index += 4
         }
         return returnLevelAndTurnsSpent
     }
@@ -171,14 +181,12 @@ class ParserModel {
         // Lines go
         // index - ADVENTURES
         // index + 1 - --------
-        // index + 2 - Adventures gained eating: 69
-        // index + 3 - Adventures gained drinking: 89
-        // index + 4 - Adventures gained using: 0
-        // index + 5 - Adventures gained rollover: 41
-        // index + ...
-        // index end - blank or QUEST TURNS
+        // index + 2 - Adventures gained eating: x
+        // index + 3 - Adventures gained drinking: y
+        // index + 4 - Adventures gained using: z
+        // index + 5 - Adventures gained rollover: a
+        // index end - blank or ate x or MEAT
         
-        var indexEnd = true
         var index = startingIndex + 2
         
         let eating = lines[index].components(separatedBy: ":")
@@ -192,9 +200,65 @@ class ParserModel {
         
         let rollover = lines[index].components(separatedBy: ":")
         
-        var returnTurnGain: TurnGain = TurnGain(eating: Int(eating[1])!, drinking: Int(drinking[1])!, using: Int(using[1])!, rollover: Int(rollover[1])!)
+        let returnTurnGain: TurnGain = TurnGain(eating: Int(eating[1])!, drinking: Int(drinking[1])!, using: Int(using[1])!, rollover: Int(rollover[1])!)
         
         return returnTurnGain
     }
     
+    func parseMeatNet(startingIndex: Int) -> [MeatGainAndLoss]{
+        // Lines go
+        // index - ADVENTURES
+        // index + 1 - --------
+        // index + 2 - Total meat gained: x
+        // index + 3 - Total meat spent: y
+        // index + 4 - Blank
+        // index + 5 - Level x:
+        // index + 6 - Meat gain inside Encounters: Ei
+        // index + 7 - Meat gain outside Encounters: Eo
+        // index + 8 - Meat spent: s
+        // index 5-8 repeat ...
+        // index end - blank or BOTTLENECKS
+        
+        var returnMeatGainAndLoss: [MeatGainAndLoss] = []
+        var indexEnd = true
+        var index = startingIndex + 5
+        while(indexEnd){
+            let line = lines[index]
+            if line.contains("Hit"){
+                let patternDigits = "\\d+"
+                var matches = matchRegex(for: patternDigits, in: line)
+                
+                let level = matches[0]
+                
+                // combat turns
+                let meatGainedInsideLine = lines[index+1]
+                
+                matches = matchRegex(for: patternDigits, in: meatGainedInsideLine)
+                let meatGainedInside = matches[0]
+                
+                // noncombat turns
+                let meatGainedOutsideLine = lines[index+2]
+                
+                matches = matchRegex(for: patternDigits, in: meatGainedOutsideLine)
+                let meatGainedOutside = matches[0]
+                
+                // other turns
+                let meatSpentLine = lines[index+3]
+                
+                matches = matchRegex(for: patternDigits, in: meatSpentLine)
+                let meatSpent = matches[0]
+                
+                let meatGained = Int(meatGainedInside)! + Int(meatGainedOutside)!
+                
+                
+                let data = MeatGainAndLoss(level: Int(level)!, meatGained: meatGained, meatSpent: Int(meatSpent)!)
+                returnMeatGainAndLoss.append(data)
+                
+                index += 4
+            }else{
+                indexEnd = false
+            }
+        }
+        return returnMeatGainAndLoss
+    }
 }
