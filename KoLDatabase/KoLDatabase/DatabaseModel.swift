@@ -254,6 +254,7 @@ class ItemsModel {
                     continue
                 }
                 
+                // Note that some modifiers are like Familiar Effect: "something, something"
                 let modifierList = categories[2].components(separatedBy: ",")
                 var modifierDictionary : [String: String] = [:]
                 var addModifier = 0
