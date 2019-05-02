@@ -79,24 +79,29 @@ class ParserModel {
     func parse(){
         // Parse line by line
         for (index, line) in lines.enumerated(){
-            
+            let trimmedLine = line.trimmingCharacters(in: .whitespaces)
             // Adventure by zone block
-            if line == "ADVENTURES"{
+            if trimmedLine.contains("ADVENTURES"){
+                NSLog(trimmedLine)
+                NSLog("Adventure")
                 self.turnsSpentPerArea = parseTurnsSpentPerArea(startingIndex: index)
             }
             
             // Adventure by level
-            if line == "LEVELS"{
+            if trimmedLine.contains("LEVELS"){
+                NSLog("Level")
                 self.turnsSpentPerLevel = parseTurnsSpentPerLevel(startingIndex: index)
             }
             
             // Turn Gain by source
-            if line == "EATING AND DRINKING AND USING"{
+            if trimmedLine.contains("EATING AND DRINKING AND USING"){
+                NSLog("Eating")
                 self.turnGains = parseTurnGain(startingIndex: index)
             }
             
             // Meat loss and gain by level
-            if line == "MEAT"{
+            if trimmedLine.contains("MEAT"){
+                NSLog("MEAT")
                 self.meatNet = parseMeatNet(startingIndex: index)
             }
         }
@@ -115,11 +120,13 @@ class ParserModel {
         var index = startingIndex + 2
         while(indexEnd){
             let line = lines[index]
+            NSLog(line)
             if line.contains(":"){
                 
                 
                 let areaAndTurn = line.components(separatedBy: ":")
-                let data = AreaAndTurnsSpent(zone: areaAndTurn[0], turnsSpent: Int(areaAndTurn[1])!)
+                NSLog(areaAndTurn[1])
+                let data = AreaAndTurnsSpent(zone: areaAndTurn[0], turnsSpent: Int(areaAndTurn[1].trimmingCharacters(in: .whitespacesAndNewlines))!)
                 returnTurnsSpentPerArea.append(data)
                 index += 1
             }else{
@@ -150,7 +157,7 @@ class ParserModel {
                 var matches = matchRegex(for: patternDigits, in: line)
                 
                 let level = matches[0]
-                let turnsSpent = matches[1]
+                let turnsSpent = matches[2]
                 
                 // combat turns
                 let combatLine = lines[index+1]
@@ -203,7 +210,7 @@ class ParserModel {
         
         let rollover = lines[index].components(separatedBy: ":")
         
-        let returnTurnGain: TurnGain = TurnGain(eating: Int(eating[1])!, drinking: Int(drinking[1])!, using: Int(using[1])!, rollover: Int(rollover[1])!)
+        let returnTurnGain: TurnGain = TurnGain(eating: Int(eating[1].trimmingCharacters(in: .whitespacesAndNewlines))!, drinking: Int(drinking[1].trimmingCharacters(in: .whitespacesAndNewlines))!, using: Int(using[1].trimmingCharacters(in: .whitespacesAndNewlines))!, rollover: Int(rollover[1].trimmingCharacters(in: .whitespacesAndNewlines))!)
         
         return returnTurnGain
     }
@@ -251,10 +258,10 @@ class ParserModel {
                 matches = matchRegex(for: patternDigits, in: meatSpentLine)
                 let meatSpent = matches[0]
                 
-                let meatGained = Int(meatGainedInside)! + Int(meatGainedOutside)!
+                let meatGained = Int(meatGainedInside.trimmingCharacters(in: .whitespacesAndNewlines))! + Int(meatGainedOutside.trimmingCharacters(in: .whitespacesAndNewlines))!
                 
                 
-                let data = MeatGainAndLoss(level: Int(level)!, meatGained: meatGained, meatSpent: Int(meatSpent)!)
+                let data = MeatGainAndLoss(level: Int(level.trimmingCharacters(in: .whitespacesAndNewlines))!, meatGained: meatGained, meatSpent: Int(meatSpent.trimmingCharacters(in: .whitespacesAndNewlines))!)
                 returnMeatGainAndLoss.append(data)
                 
                 index += 4

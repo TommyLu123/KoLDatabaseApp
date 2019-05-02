@@ -9,15 +9,31 @@
 import UIKit
 import Charts
 
+// MARK: axisFormatDelegate
+// https://github.com/danielgindi/Charts/issues/1527
+// Adjusts data to allow for strings by mapping numbers to zones instead of just doubles
+class ChartStringFormatter: NSObject, IAxisValueFormatter {
+    
+    var nameValues: [String]?
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return String(describing: nameValues![Int(value)])
+    }
+}
+
 class HorizontalBarGraphViewController: UIViewController {
 
     @IBOutlet weak var horizontalBarGraph: HorizontalBarChartView!
-    
+    @IBOutlet weak var titleLabel: UILabel!
     var graphTitle: String?
+    var parserModel: ParserModel?
+    //Area or Level for turns spent
+    var type: String?
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = graphTitle
         
         // Do any additional setup after loading the view.
         
@@ -28,9 +44,10 @@ class HorizontalBarGraphViewController: UIViewController {
         
         let xAxis = horizontalBarGraph.xAxis
         xAxis.labelPosition = .bottom
-        xAxis.labelFont = .systemFont(ofSize: 10)
+        xAxis.labelFont = .systemFont(ofSize: 7)
         xAxis.drawAxisLineEnabled = true
-        xAxis.granularity = 10
+        xAxis.granularity = 1
+        xAxis.labelCount = 50
         
         let leftAxis = horizontalBarGraph.leftAxis
         leftAxis.labelFont = .systemFont(ofSize: 10)
@@ -59,6 +76,40 @@ class HorizontalBarGraphViewController: UIViewController {
         
         horizontalBarGraph.animate(yAxisDuration: 2.5)
         // Do any additional setup after loading the view.
+        self.updateChartWithData()
+        
+    }
+    
+    func updateChartWithData(){
+        if type == "Area"{
+            var dataEntries: [BarChartDataEntry] = []
+            var nameValues: [String] = []
+            
+            for (i, entry) in (parserModel?.turnsSpentPerArea)!.enumerated(){
+                nameValues.append(String(entry.zone.prefix(15)))
+                let dataEntry = BarChartDataEntry(x: Double(i), y: Double(entry.turnsSpent))
+                dataEntries.append(dataEntry)
+                NSLog("\(i), \(entry.zone), \(entry.turnsSpent)")
+            }
+            let chartDataSet = BarChartDataSet(values: dataEntries, label: "Turn Count")
+            let chartData = BarChartData(dataSet: chartDataSet)
+            self.horizontalBarGraph.xAxis.valueFormatter = IndexAxisValueFormatter(values:nameValues)
+            self.horizontalBarGraph.data = chartData
+            
+        }
+        else if type == "Level"{
+            var dataEntries: [BarChartDataEntry] = []
+            
+            for (_, entry) in (parserModel?.turnsSpentPerLevel)!.enumerated(){
+                let dataEntry = BarChartDataEntry(x: Double(entry.level), y: Double(entry.turnsSpent))
+                dataEntries.append(dataEntry)
+            }
+            let chartDataSet = BarChartDataSet(values: dataEntries, label: "Turn Count")
+            let chartData = BarChartData(dataSet: chartDataSet)
+            self.horizontalBarGraph.data = chartData
+        }else{
+            NSLog("Wrong type passed in. Should never occur")
+        }
     }
     
 

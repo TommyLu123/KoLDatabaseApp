@@ -28,15 +28,39 @@ class DocumentViewController: UIViewController {
         // Access the document
         document?.open(completionHandler: { (success) in
             if success {
+                self.turnSpentByAreaButton.isEnabled = false
+                self.turnSpentPerLevelButton.isEnabled = false
+                self.turnGainBySourceButton.isEnabled = false
+                self.meatNetByLevelButton.isEnabled = false
+                
                 // Display the content of the document, e.g.:
                 self.logPlainText.text = self.document?.userText
                 self.navigationBar.topItem?.title = self.document?.fileURL.lastPathComponent
-                if self.logPlainText.text.contains("Ascension Log Visualizer"){
-                    //parse
-                    self.parserModel = ParserModel(documentText: (self.document?.userText)!)
-                    self.parserModel?.parse()
-                    NSLog("Finished Parsing")
-                    //activate graph buttons on finish parse
+                // If we return to this view and parserModel has been parsed, then we do not reparse
+                if self.parserModel == nil {
+                    if self.logPlainText.text.contains("[code]===Day 1==="){
+                        //parse
+                        self.parserModel = ParserModel(documentText: (self.document?.userText)!)
+                        self.parserModel?.parse()
+                        NSLog("Finished Parsing")
+                        self.turnSpentByAreaButton.isEnabled = true
+                        self.turnSpentPerLevelButton.isEnabled = true
+                        self.turnGainBySourceButton.isEnabled = true
+                        self.meatNetByLevelButton.isEnabled = true
+                        //activate graph buttons on finish parse
+                    }
+                    else{
+                        self.turnSpentByAreaButton.setTitle("Unable to load this log.", for: .normal)
+                        self.turnSpentPerLevelButton.setTitle("", for: .normal)
+                        self.turnGainBySourceButton.setTitle("", for: .normal)
+                        self.meatNetByLevelButton.setTitle("", for: .normal)
+                    }
+                }else{
+                    
+                    self.turnSpentByAreaButton.isEnabled = true
+                    self.turnSpentPerLevelButton.isEnabled = true
+                    self.turnGainBySourceButton.isEnabled = true
+                    self.meatNetByLevelButton.isEnabled = true
                     
                 }
             } else {
@@ -49,11 +73,22 @@ class DocumentViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let horizontalViewcontroller = storyBoard.instantiateViewController(withIdentifier: "HorizontalBarGraphViewController") as! HorizontalBarGraphViewController
         
-        horizontalViewcontroller.modalPresentationStyle = .currentContext
-        
+        //horizontalViewcontroller.modalPresentationStyle = .currentContext
+        horizontalViewcontroller.parserModel = parserModel
+        horizontalViewcontroller.type = "Area"
+        horizontalViewcontroller.graphTitle = "Turns Spent Per Area"
         present(horizontalViewcontroller, animated: false, completion: nil)
     }
     @IBAction func onTurnsSpentPerLevelPress(_ sender: Any) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let horizontalViewcontroller = storyBoard.instantiateViewController(withIdentifier: "HorizontalBarGraphViewController") as! HorizontalBarGraphViewController
+        
+        //horizontalViewcontroller.modalPresentationStyle = .currentContext
+        horizontalViewcontroller.parserModel = parserModel
+        horizontalViewcontroller.type = "Level"
+        horizontalViewcontroller.graphTitle = "Turns Spent Per Level"
+        present(horizontalViewcontroller, animated: false, completion: nil)
     }
     @IBAction func onTurnGainBySourcePress(_ sender: Any) {
     }
